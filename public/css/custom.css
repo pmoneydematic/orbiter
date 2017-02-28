@@ -129,3 +129,17 @@ li.ng-scope {
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
+.custom-header-link { 
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 10px;
+    text-decoration: none;
+}
+.custom-header-link:hover { 
+    text-decoration: none; 
+    filter: brightness(110%);
+}
+.custom-header-link:active, .custom-header-link:visited, .custom-header-link:link { 
+    text-decoration: none; 
+}
