@@ -41,7 +41,8 @@ module.exports = function(app){
 
   app.post('/fiat', fiat);
   app.post('/stats', stats);
-
+  
+  app.post('/allaccounts', getAllAccounts);
 
 }
 
@@ -320,6 +321,64 @@ var getLowTx = function(req, res){
 };
 
 
+var getAllAccounts = function(req, res){
+  //var addr = req.body.addr.toLowerCase(); // nothing should be sent in the request
+  var accounts = [];
+  
+  // testing
+  accounts.push("MC1234");
+  accounts.push("MC5678");
+  accounts.push("MC9098");
+  accounts.push("MC7654");
+  accounts.push("MC7654");
+  accounts.push("MC1234567890");
+  accounts.push("MC7654");
+  accounts.push("MC9999");
+  accounts.push("MC7654");
+  accounts.push("MC9998");
+  
+  
+  var lastBlock = latestBlock(); // this errors out the app.js when no nodes are present
+  var txnsInBlock = lastBlock ? lastBlock.txns : 0;
+  var txIndex = 0;
+  if (lastBlock && lastBlock != "") {
+    accounts.push(lastBlock.number);
+
+  }
+  else {
+    accounts.push("No block found");
+  }
+  /*
+  for(var idx = 0; idx < txnsInBlock; iodx++)
+  {
+
+    var txData = web3.eth.getTransactionFromBlock(lastBlock.number, txIndex); // gets transaction INDEX from the block (0)
+    accounts.push(txData.from);
+    accounts.push(txData.to);
+  }*/
+
+  
+
+  // if you are using nodejs, you may need several calls to getBlock, getTransactionFromBlock,  to collect all addresses 
+  // now return these addresses, and then do the web3relay call to get balances on them all in the controller
+  // QUESTION: are all accounts/transactions stored in each block? or do i need to get EVERY block??
+
+  /*
+  var addrTxCount = Transaction.find( { $or: [{"to": addr}, {"from": addr}] });
+  addrTxCount.exec(function (err, results) {
+    data.count = results.length;    
+  });
+  */
+
+  // Rturn only distinct accounts
+  let uniqueAccts = Array.from( new Set(accounts) ); 
+
+  // Return the data
+  res.write(JSON.stringify(uniqueAccts));
+  res.end();
+}
+
+
 /*
   Fetch data from DB
 */
@@ -352,8 +411,11 @@ var latestBlock = function(req, res) {
   var block = Block.findOne({}, "totalDifficulty")
                       .lean(true).sort('-number');
   block.exec(function (err, doc) {
-    res.write(JSON.stringify(doc));
-    res.end();
+    if (doc) { 
+      res.write(JSON.stringify(doc));
+      res.end();
+    }    
+    
   });
 }
 
