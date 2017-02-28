@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <!-- BEGIN RICHLIST PORTLET-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="fa fa-money font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">Richlist</span>
+                </div>                
+            </div>
+
+            <div class="portlet-body">
+                <table class="table table-striped table-hover" id="table_txs" style="table-layout:fixed;width: 98% !important;">
+                  <thead>
+                      <tr role="row" class="heading">
+                          <th width="10%"> # </th>
+                          <th width="45%" class="font-red"> <i class="fa fa-cube"></i> Address</a> </th>
+                          <th width="45%" class="font-green"> <i class="fa fa-money"></i> Balance </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="acct in listData track by $index">
+                           <td>{{$index + 1}}.</td>
+                           <td style="padding-left: 15px;"><a href="/addr/{{acct.address}}">{{acct.address}}</a></td>
+                           <td style="padding-left: 15px;">$MC {{acct.balance}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+
+            </div>
+        </div>
+        <!-- END RICHLIST PORTLET-->
+    </div>
+    
+</div>
+
+
