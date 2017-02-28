@@ -1,6 +1,8 @@
-# Musicoin Blockchain Explorer
+# Musicoin Blockchain Explorer (Fork with RichList)
 
-<b>Live (staging) Version: [Orbiter.Musicoin.org](http://orbiter.musicoin.org)</b>
+<b>Live (staging) Version: None</b>
+
+Note: This is a direct fork from Musicoin/orbiter for the sole purpose of adding a RichList
 
 ## Local installation
 Clone the repo, and download [Nodejs and npm](https://docs.npmjs.com/getting-started/installing-node "Nodejs install") if you don't have them
