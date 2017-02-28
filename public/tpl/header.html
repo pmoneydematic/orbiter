@@ -22,10 +22,17 @@
     </div>
     <!-- END LOGO -->
     <div class="top-menu">
+
+        <!-- Middle Links -->
+        <ul class="nav navbar-nav" style="padding-top: 14px;">
+            <a href="/richlist" class="custom-header-link font-green"><i class="fa fa-money"></i> Top 100</a>
+        </ul>
+        
+        <!-- Search area -->
         <ul class="nav navbar-nav pull-right">
             <li class="dropdown">
                 <form name="form.searchForm" class="search-form">
-                    <div class="input-group">
+                    <div class="input-group">               
                         <input type="text" name="explorerSearch" class="form-control" placeholder="Search by Address / Txhash / BlockNum" ng-model="form.searchInput" ng-keyup="$event.keyCode == 13 ? searchQuery(form.searchInput) : null">
                         <span class="input-group-btn">
                             <a class="btn" ng-click="searchQuery(form.searchInput)">
@@ -35,8 +42,7 @@
                     </div>
                 </form>
             </li>
-
-
-        </ul>
+        </ul>        
     </div>
     <!-- END TOP NAVIGATION MENU -->
+
