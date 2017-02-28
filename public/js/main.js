@@ -243,6 +243,24 @@ BlocksApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvide
                 }]
             }
         })
+    
+        .state('richlist', {
+            url: "/richlist",
+            templateUrl: "views/richlist.html",
+            data: {pageTitle: 'Richlist'},
+            controller: "RichlistController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BlocksApp',
+                        insertBefore: '#ng_load_plugins_before', 
+                        files: [
+                             '/js/controllers/RichlistController.js'
+                        ]
+                    });
+                }]
+            }
+        })
 
         .state('err404', {
             url: "/err404/{thing}/{hash}",
